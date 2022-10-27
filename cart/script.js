@@ -1,18 +1,17 @@
 renderCartProducts()
-console.log(cart)
 function renderCartProducts() {
 	let text = ""
 	const currencyFormat = { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }
 	cart.map((product,index) => {
 		text += `
 		<tr>
-			<td scope="row">${product.id}</td>
-			<td>${product.name}</td>
-			<td>${product.category}</td>
-			<td>${parseFloat(product.price.toFixed(2)).toLocaleString('pt-BR', currencyFormat)}</td>
-			<td>${product.quantity}</td>
-			<td>${parseFloat((product.price * product.quantity).toFixed(2)).toLocaleString('pt-BR', currencyFormat)}</td>
-			<td>
+			<td class="col-2" scope="row">${product.id}</td>
+			<td class="col-2">${product.name}</td>
+			<td class="col-2">${product.category}</td>
+			<td class="col-2">${parseFloat(product.price.toFixed(2)).toLocaleString('pt-BR', currencyFormat)}</td>
+			<td class="col-2"> <input type="number" min="1" max="${product.stock}" step="1" id="item${index}" class="form-control" onChange="changeCartItem(${index})" value="${product.quantity}" /></td>
+			<td class="col-2">${parseFloat((product.price * product.quantity).toFixed(2)).toLocaleString('pt-BR', currencyFormat)}</td>
+			<td class="col-2">
 				<button class="btn btn-outline-danger" onclick="removeFromCart(${index})">
 				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
 						class="bi bi-cart-x-fill" viewBox="0 0 16 16">
@@ -25,15 +24,24 @@ function renderCartProducts() {
 		`
 	})
 	document.getElementById("tableBodyCartProducts").innerHTML = text
-	let totalPrice = 0
-	totalPrice = cart.reduce((acc, product) => acc + (product.quantity * product.price), 0)
+	const totalPrice = cart.reduce((acc, product) => acc + (product.quantity * product.price), 0)
 	document.getElementById("totalPrice").innerHTML = parseFloat(totalPrice.toFixed(2)).toLocaleString('pt-BR', currencyFormat)
-	console.log(totalPrice)
 }
 
 function removeFromCart(index){
-	console.log(index)
 	cart.splice(index, 1);
+	localStorage.setItem('eCommerce:cart', JSON.stringify(cart))
+	renderCartProducts()
+}
+
+function changeCartItem(index){
+	newQty = Number(document.getElementById(`item${index}`).value)
+	if(newQty > cart[index].stock){
+		alert(`Valor invalido.\nA quantidade ${newQty} é maior que o estoque disponivel de Estoque disponivel: ${cart[index].stock} unidades. `)
+		document.getElementById(`item${index}`).focus()
+		return
+	}
+	cart[index].quantity = newQty
 	localStorage.setItem('eCommerce:cart', JSON.stringify(cart))
 	renderCartProducts()
 }
