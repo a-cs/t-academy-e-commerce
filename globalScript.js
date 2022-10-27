@@ -50,13 +50,16 @@ function addToCart(id){
 		if(cart[cartIndex].stock < (cart[cartIndex].quantity + 1)){
 			alert(`Não foi possível realizer a compra.\nA quantidade ${cart[cartIndex].quantity + 1} é maior que o estoque disponivel de ${cart[cartIndex].stock} unidades.`)
 			return
+		} else {
+			cart[cartIndex].quantity += 1
+			alert(`O produto ${cart[cartIndex].name} foi adicionado com sucesso`)
 		}
-		cart[cartIndex].quantity += 1
 	} else {
 		const {name, category, price, quantity: stock} = products[index]
 		let quantity = 1
 		product = {id, name, category, price, quantity, stock}
 		cart.push(product)
+		alert(`O produto ${name} foi adicionado com sucesso`)
 	}
 	localStorage.setItem('eCommerce:cart', JSON.stringify(cart))
 }

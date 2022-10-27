@@ -34,12 +34,19 @@
 			</a>
 		</div>
 
-		<div class="row my-5 px-3">
-			<div class="row mb-5 text-center">
+		<div class="row mb-5 text-center">
+			<h2>
+				Lista de Produtos por Categoria
+			</h2>
+		</div>
+
+		<div class="row my-5 p-3">
+			<div class="row mb-5 pe-0">
 				<select id="categoriesSelector" class="form-select" onchange="renderSelectedCategory()">
-					<option value="none" selected disabled hidden>Selecione a Categoria dos Produtos</option>
+					<option value="none" selected disabled hidden>Selecione uma Categoria</option>
 					
 				</select>
+				<h5 class="mt-3 text-end text-secondary">Total de registros: <span id="totalProductsByCategory" class="h4 text-primary">0</span></h5>
 			</div>
 			<table class="table table-light table-striped table-hover w-100 mb-2">
 				<thead class="table-primary">
@@ -57,7 +64,7 @@
 
 				</tbody>
 			</table>
-			<h6 class="mt-3 text-end">Total de registros: <span id="totalProductsByCategory">0</span></h6>
+			
 		</div>
 	</div>
 

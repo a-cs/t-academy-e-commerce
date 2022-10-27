@@ -2,7 +2,7 @@
 populateCategoriesSelector()
 
 function populateCategoriesSelector() {
-	let selectContent = '<option value="none" selected disabled hidden>Selecione a Categoria dos Produtos</option>'
+	let selectContent = '<option value="none" selected disabled hidden>Selecione uma Categoria</option>'
 	categories.map((category) => {
 		selectContent += `
 		<option value="${category.name}">${category.name}</option>

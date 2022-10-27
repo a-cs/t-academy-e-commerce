@@ -9,7 +9,7 @@
 repetição;
 - [x] Deverá ter pelo menos três segmentos, cada segmento deve possuir pelo menos
 dez produtos cadastrados;
-- [ ] Haverá uma opção para pesquisar produtos que tenham determinado termo;
+- [x] Haverá uma opção para pesquisar produtos que tenham determinado termo;
 - [x] Haverá um menu, onde poderão ser exibidos todos os produtos através de
 segmentos, precisa haver pelo menos três tipos de segmentos diferentes, exemplo:
 telefonia, vestuário e alimentício;
