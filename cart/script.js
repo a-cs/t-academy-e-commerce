@@ -25,5 +25,15 @@ function renderCartProducts() {
 		`
 	})
 	document.getElementById("tableBodyCartProducts").innerHTML = text
-	document.getElementById("totalCartProducts").innerHTML = cart.length
+	let totalPrice = 0
+	totalPrice = cart.reduce((acc, product) => acc + (product.quantity * product.price), 0)
+	document.getElementById("totalPrice").innerHTML = parseFloat(totalPrice.toFixed(2)).toLocaleString('pt-BR', currencyFormat)
+	console.log(totalPrice)
+}
+
+function removeFromCart(index){
+	console.log(index)
+	cart.splice(index, 1);
+	localStorage.setItem('eCommerce:cart', JSON.stringify(cart))
+	renderCartProducts()
 }

@@ -56,7 +56,3 @@ function addToCart(id){
 	}
 	localStorage.setItem('eCommerce:cart', JSON.stringify(cart))
 }
-
-function removeFromCart(index){
-	console.log(index)
-}
